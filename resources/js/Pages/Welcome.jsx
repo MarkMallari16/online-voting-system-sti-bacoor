@@ -2,7 +2,7 @@ import { Link, Head } from "@inertiajs/react";
 import SHSLogo from "../Pages/assets/Logo.png";
 import MainPage from "../Pages/assets/mainPage2.png";
 import { useState,useEffect } from "react";
-
+import Footer from "./Footer";
 export default function Welcome(props) {
     const [isScrolled, setIsScrolled] = useState(false);
 
@@ -59,8 +59,10 @@ export default function Welcome(props) {
                 <div className="main-page-container m-3">
                     <img src={MainPage} alt="Logo"className="rounded-md" />
                 </div>
-            </div>
 
+               
+            </div>
+            <Footer/>
             <style>{`
                 /* ... Your existing styles ... */
 

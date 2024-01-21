@@ -5,6 +5,7 @@ use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 use App\Http\Controllers\DashboardController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -33,15 +34,19 @@ Route::get('/admindashboard', [DashboardController::class, 'admin'])->middleware
 Route::get('/moderatordashboard', [DashboardController::class, 'moderator'])->middleware(['auth', 'verified'])->name('moderatordashboard');
 
 //Users Dashboard
-Route::get('/voterdashboard', [DashboardController::class, 'user'])->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('/dashboard', [DashboardController::class, 'user'])->middleware(['auth', 'verified'])->name('dashboard');
 
 //Main Page
 Route::get('/home', [DashboardController::class, 'home'])->middleware(['verified'])->name('home');
+
+
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
+
+
 Route::post('/logout', [LogoutController::class, 'logout'])->name('logout');
 require __DIR__.'/auth.php';

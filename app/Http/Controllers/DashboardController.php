@@ -24,4 +24,5 @@ class DashboardController extends Controller
     {
         return Inertia::render('Home');
     }
+  
 }

@@ -1,6 +1,8 @@
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
 import { Head } from "@inertiajs/react";
-
+import SanaolPartylist from "../Pages/assets/sanaol-partylist.jpg";
+import SandiganPartylist from "../Pages/assets/sandigan-partylist.jpg";
+import { Bar } from "react-chartjs-2";
 export default function Dashboard(props) {
     const { auth } = props;
 
@@ -10,10 +12,11 @@ export default function Dashboard(props) {
     };
     // Dummy chart data
     const dummyChartData = {
-        labels: ["Option 1", "Option 2", "Option 3"],
+        labels: ["Candidate A", "Candidate B", "Candidate C"],
         datasets: [
             {
-                data: [30, 45, 25], // Update this data with your real-time voting results
+                label: "Votes",
+                data: [30, 45, 25],
                 backgroundColor: ["#FF6384", "#36A2EB", "#FFCE56"],
                 hoverBackgroundColor: ["#FF6384", "#36A2EB", "#FFCE56"],
             },
@@ -22,20 +25,36 @@ export default function Dashboard(props) {
 
     // Dummy chart options
     const dummyChartOptions = {
+        scales: {
+            x: {
+                type: 'category', // Use 'category' scale for the x-axis
+                labels: ["Candidate A", "Candidate B", "Candidate C"],
+            },
+            y: {
+                beginAtZero: true,
+            },
+        },
         legend: {
             display: true,
             position: "right",
         },
     };
 
+    const partyLists = [
+        { src: SanaolPartylist, alt: "Sanaol partylist" },
+        { src: SandiganPartylist, alt: "Sandigan partylist" },
+    ];
     return (
         <AuthenticatedLayout
             auth={auth}
             errors={props.errors}
             header={
-                <h2 className="font-semibold text-xl text-gray-800 leading-tight">
-                    Voter Dashboard
-                </h2>
+                <>
+                    <h2 className="font-semibold text-xl text-gray-800 leading-tight">
+                        Voter Dashboard
+                    </h2>
+                    <h3> Hello, {auth.user.name}!</h3>
+                </>
             }
         >
             <Head title="Voter Dashboard" />
@@ -43,11 +62,7 @@ export default function Dashboard(props) {
             <div className="py-12">
                 <div className="max-w-7xl mx-auto sm:px-6 lg:px-8">
                     {/* Welcome message */}
-                    <div className="bg-white overflow-hidden shadow-sm sm:rounded-lg mb-4 ">
-                        <div className="p-6 text-gray-900">
-                            Hello, {auth.user.name}!
-                        </div>
-                    </div>
+                    {/* ... (unchanged) */}
 
                     {/* Section 1: View Party Lists */}
                     <div className="bg-white overflow-hidden shadow-sm sm:rounded-lg mb-2  p-3">
@@ -55,72 +70,18 @@ export default function Dashboard(props) {
                             Party Lists
                         </h3>
                         <div className="partylist-container flex gap-2">
-                            <div class="max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-                                <a href="#">
-                                    <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
-                                        Noteworthy technology acquisitions 2021
-                                    </h5>
-                                </a>
-                                <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">
-                                    Here are the biggest enterprise technology
-                                    acquisitions of 2021 so far, in reverse
-                                    chronological order.
-                                </p>
-                                <a
-                                    href="#"
-                                    class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                            {partyLists.map((partylist, index) => (
+                                <div
+                                    key={index}
+                                    className=" p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 w-100"
                                 >
-                                    Read more
-                                    <svg
-                                        class="rtl:rotate-180 w-3.5 h-3.5 ms-2"
-                                        aria-hidden="true"
-                                        xmlns="http://www.w3.org/2000/svg"
-                                        fill="none"
-                                        viewBox="0 0 14 10"
-                                    >
-                                        <path
-                                            stroke="currentColor"
-                                            stroke-linecap="round"
-                                            stroke-linejoin="round"
-                                            stroke-width="2"
-                                            d="M1 5h12m0 0L9 1m4 4L9 9"
-                                        />
-                                    </svg>
-                                </a>
-                            </div>
-                            <div class="max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-                                <a href="#">
-                                    <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
-                                        Noteworthy technology acquisitions 2021
-                                    </h5>
-                                </a>
-                                <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">
-                                    Here are the biggest enterprise technology
-                                    acquisitions of 2021 so far, in reverse
-                                    chronological order.
-                                </p>
-                                <a
-                                    href="#"
-                                    class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-                                >
-                                    Read more
-                                    <svg
-                                        class="rtl:rotate-180 w-3.5 h-3.5 ms-2"
-                                        aria-hidden="true"
-                                        xmlns="http://www.w3.org/2000/svg"
-                                        fill="none"
-                                        viewBox="0 0 14 10"
-                                    >
-                                        <path
-                                            stroke="currentColor"
-                                            stroke-linecap="round"
-                                            stroke-linejoin="round"
-                                            stroke-width="2"
-                                            d="M1 5h12m0 0L9 1m4 4L9 9"
-                                        />
-                                    </svg>
-                                </a>
-                            </div>
+                                    <img
+                                        src={partylist.src}
+                                        alt={partylist.alt}
+                                        className="w-100 w-full h-auto rounded"
+                                    />
+                                </div>
+                            ))}
                         </div>
                     </div>
 
@@ -129,8 +90,7 @@ export default function Dashboard(props) {
                         <h3 className="text-lg font-semibold mb-4">
                             Cast Vote
                         </h3>
-                        <form onSubmit={(e) => handleVote(e)}>
-                            {/* Example: Display a list of positions and party lists */}
+                        <form onSubmit={handleVote}>
                             <div className="mb-4">
                                 <label htmlFor="position">
                                     Select Position:
@@ -140,7 +100,14 @@ export default function Dashboard(props) {
                                     name="position"
                                     className="form-select"
                                     required
-                                ></select>
+                                >
+                                    <option value="" disabled selected>
+                                        Choose a position
+                                    </option>
+                                    {/* Replace with dynamic data */}
+                                    <option value="1">Sanaol</option>
+                                    <option value="2">Sandigan</option>
+                                </select>
                             </div>
 
                             <div className="mb-4">
@@ -152,10 +119,15 @@ export default function Dashboard(props) {
                                     name="partyList"
                                     className="form-select"
                                     required
-                                ></select>
+                                >
+                                    <option value="" disabled selected>
+                                        Choose a party list
+                                    </option>
+                                    {/* Replace with dynamic data */}
+                                    <option value="A">Party List A</option>
+                                    <option value="B">Party List B</option>
+                                </select>
                             </div>
-
-                            {/* Add more UI elements as needed for the voting process */}
 
                             <button
                                 type="submit"
@@ -172,8 +144,37 @@ export default function Dashboard(props) {
                             Live Results
                         </h3>
 
-                        {/* Display real-time voting results for each position */}
-                        {/* You can use WebSocket or polling to update the results in real-time */}
+                        
+
+                        {/* Display real-time voting results for Vice President */}
+                        <div className="mb-4">
+                            <h4 className="text-md font-semibold mb-2">
+                                Vice President
+                            </h4>
+                            {/* Add your chart or visualization component for Vice President's results here */}
+                        </div>
+
+                        {/* Display real-time voting results for Auditor */}
+                        <div className="mb-4">
+                            <h4 className="text-md font-semibold mb-2">
+                                Auditor
+                            </h4>
+                            {/* Add your chart or visualization component for Auditor's results here */}
+                        </div>
+
+                        {/* Display real-time voting results for PRO */}
+                        <div className="mb-4">
+                            <h4 className="text-md font-semibold mb-2">PRO</h4>
+                            {/* Add your chart or visualization component for PRO's results here */}
+                        </div>
+
+                        {/* Display real-time voting results for Secretary */}
+                        <div>
+                            <h4 className="text-md font-semibold mb-2">
+                                Secretary
+                            </h4>
+                            {/* Add your chart or visualization component for Secretary's results here */}
+                        </div>
                     </div>
                 </div>
             </div>

@@ -18,7 +18,7 @@ return new class extends Migration
             if (!Schema::hasColumn('users', 'user_level')) {
                 $table->enum('user_level', ['admin', 'moderator', 'voter'])
                     ->notNull()
-                    ->default('voter');
+                    ;
             }
         });
     }
