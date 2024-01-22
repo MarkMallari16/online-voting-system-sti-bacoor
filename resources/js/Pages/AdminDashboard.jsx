@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
-import { FaUser,FaUserShield,FaUsers } from "react-icons/fa";
+import { FaUser, FaUserShield, FaUsers } from "react-icons/fa";
 import TableData from "./TableData";
 import axios from "axios";
 import { BsPersonPlusFill } from "react-icons/bs";
@@ -24,9 +24,7 @@ const AdminDashboard = (props) => {
     };
     const [adminCount, setAdminCount] = useState(0);
     const [moderatorCount, setModeratorCount] = useState(0);
-    const [voterCount, setVoterCount] = useState(0);
-
-    const [isModalOpen, setIsModalOpen] = useState(false);
+  
 
     const fetchUsers = async () => {
         try {
@@ -40,6 +38,7 @@ const AdminDashboard = (props) => {
         fetchUsers();
     }, []);
 
+    console.log(props.users);
     const handleUpdateUser = async (updatedUser) => {
         try {
             // Send a PUT request to update the user by ID
@@ -88,7 +87,7 @@ const AdminDashboard = (props) => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                // Make API calls to get the counts based on user levels
+             
                 const adminResponse = await axios.get(
                     "/api/users/count?user_level=admin"
                 );
@@ -99,7 +98,7 @@ const AdminDashboard = (props) => {
                     "/api/users/count?user_level=voter"
                 );
 
-                // Update the state with the fetched counts
+          
                 setAdminCount(adminResponse.data.count);
                 setModeratorCount(moderatorResponse.data.count);
                 setVoterCount(voterResponse.data.count);
@@ -111,26 +110,40 @@ const AdminDashboard = (props) => {
         // Call the fetchData function
         fetchData();
     }, []);
+
+    const usersNum = props.users;
+    const voters = usersNum.filter((user) => user.user_level === "voter");
+    const admins = usersNum.filter((user) => user.user_level === "admins");
+    const moderators = usersNum.filter((user) => user.user_level === "moderator");
+
+
+    // Store filtered voters in an object with user IDs as keys
+    const votersObject = {};
+    voters.forEach((voter) => {
+        votersObject[voter.id] = voter;
+    });
+    
+    const adminsObject = {};
+    admins.forEach((voter) => {
+        adminsObject[voter.id] = voter;
+    });
+   
+    const moderatorsObject = {};
+    moderators.forEach((voter) => {
+        moderatorsObject[voter.id] = voter;
+    });
+
+    const votersCount = Object.keys(votersObject).length;
+    const adminsCount = Object.keys(adminsObject).length;
+    const moderatorsCount = Object.keys(moderatorsObject).length;
+
+    
     return (
-        <AuthenticatedLayout
-            auth={auth}
-            errors={props.errors}
-            header={
-                <div className="flex justify-between">
-                    <h2 className="font-semibold text-xl text-gray-800 leading-tight">
-                        Hello, Admin
-                    </h2>
-                    <h2 className="text-end font-semibold text-xl text-gray-800 leading-tight">
-                        Role: {auth.user.user_level}
-                    </h2>
-                </div>
-            }
-        >
-            {/* <AdminSideBar /> */}
+        <>
             <div className="flex flex-col mt-3 md:flex-row gap-6 w-full p-4 md:p-8 ">
                 <div className="mb-4 bg-amber-300 p-4 rounded w-full md:w-full lg:w-1/2 xl:w-1/3">
                     <h1 className="block font-extrabold text-2xl md:text-4xl lg:text-5xl">
-                        {adminCount}
+                        {adminsCount}
                     </h1>
                     <div className="flex items-center mt-2">
                         <FaUser />
@@ -142,7 +155,7 @@ const AdminDashboard = (props) => {
 
                 <div className="mb-4 bg-slate-300 p-4 rounded w-full md:w-full lg:w-1/2 xl:w-1/3">
                     <h1 className="block font-extrabold text-2xl md:text-4xl lg:text-5xl">
-                        {moderatorCount}
+                        {moderatorsCount}
                     </h1>
                     <div className="flex items-center mt-2">
                         <FaUserShield />
@@ -154,7 +167,7 @@ const AdminDashboard = (props) => {
 
                 <div className="mb-4 bg-cyan-200 p-4 rounded w-full md:w-full lg:w-1/2 xl:w-1/3">
                     <h1 className="block font-extrabold text-2xl md:text-4xl lg:text-5xl">
-                        {voterCount}
+                        {votersCount}
                     </h1>
                     <div className="flex items-center mt-2">
                         <FaUsers />
@@ -176,7 +189,7 @@ const AdminDashboard = (props) => {
                     </button>
                 </div>
             </div>
-            <AddUserModal
+            {/* <AddUserModal
                 isOpen={isModalOpen}
                 onClose={() => setIsModalOpen(false)}
                 onAddUser={handleAddUser} // Remove the arrow function and pass the function directly
@@ -184,7 +197,7 @@ const AdminDashboard = (props) => {
                     setNewUser({ ...newUser, [e.target.name]: e.target.value })
                 }
                 user={newUser}
-            />
+            /> */}
             <TableData
                 users={users}
                 onUpdateUser={handleUpdateUser}
@@ -192,7 +205,7 @@ const AdminDashboard = (props) => {
                 onAddUser={handleAddUser}
                 fetchUsers={fetchUsers}
             />
-        </AuthenticatedLayout>
+        </>
     );
 };
 

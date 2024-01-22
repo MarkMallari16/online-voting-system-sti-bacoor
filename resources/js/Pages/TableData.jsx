@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 
-
 const TableData = ({ users, onUpdateUser, onDeleteUser, onAddUser }) => {
     const [selectedUser, setSelectedUser] = useState(null);
     const [isModalVisible, setIsModalVisible] = useState(false);
@@ -14,18 +13,18 @@ const TableData = ({ users, onUpdateUser, onDeleteUser, onAddUser }) => {
     };
 
     const handleModalToggle = () => {
-        setIsAddMode(false); // Reset to default mode
+        setIsAddMode(false);
         setIsModalVisible(!isModalVisible);
     };
 
     const handleAddClick = () => {
-        setIsAddMode(true); // Set to "Add" mode
+        setIsAddMode(true);
         handleModalToggle();
     };
 
     const handleEditClick = (user) => {
         setSelectedUser(user);
-        setIsAddMode(false); // Set to default mode
+        setIsAddMode(false);
         setIsUpdateModalVisible(true);
     };
 
@@ -44,18 +43,6 @@ const TableData = ({ users, onUpdateUser, onDeleteUser, onAddUser }) => {
         setIsDeleteModalVisible(false);
     };
 
-    const handleAddConfirm = () => {
-        const newUserData = {
-            name: newUserName,
-            email: newUserEmail,
-            password: newUserPassword,
-            user_level: newUserRole,
-        };
-
-        onAddUser(newUserData);
-        setIsModalVisible(false);
-    };
-
     const handleModalClose = () => {
         setIsUpdateModalVisible(false);
         setIsDeleteModalVisible(false);
@@ -64,8 +51,6 @@ const TableData = ({ users, onUpdateUser, onDeleteUser, onAddUser }) => {
 
     return (
         <>
-            
-
             {isModalVisible && selectedUser && (
                 <div className="modal">
                     <div className="modal-content">
@@ -113,12 +98,13 @@ const TableData = ({ users, onUpdateUser, onDeleteUser, onAddUser }) => {
                         {users.map((user) => (
                             <tr
                                 key={user.id}
-                                className="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700"
+                                className={`${
+                                    user.id % 2 === 0
+                                        ? "even:bg-gray-50 even:dark:bg-gray-800"
+                                        : "odd:bg-white odd:dark:bg-gray-900"
+                                } border-b dark:border-gray-700`}
                             >
-                                <td
-                                    scope="row"
-                                    className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
-                                >
+                                <td className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                                     {user.id}
                                 </td>
                                 <td className="px-6 py-4">{user.name}</td>
@@ -148,7 +134,6 @@ const TableData = ({ users, onUpdateUser, onDeleteUser, onAddUser }) => {
                         ))}
                     </tbody>
                 </table>
-            
             </div>
         </>
     );

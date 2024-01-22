@@ -1,13 +1,11 @@
 import React, { useState, useEffect } from "react";
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
 
-import { FaUser, FaUserShield,FaUserTie } from "react-icons/fa";
+import { FaUser, FaUserShield, FaUserTie } from "react-icons/fa";
 import LiveResultComponent from "./LiveResultComponent";
 import CandidateTable from "./CandidateTable";
 import { BsFillPersonCheckFill } from "react-icons/bs";
 import CandidateForm from "./CandidateForm";
-
-
 
 const ModeratorDashboard = (props) => {
     const { auth } = props;
@@ -60,20 +58,7 @@ const ModeratorDashboard = (props) => {
     };
 
     return (
-        <AuthenticatedLayout
-            auth={auth}
-            errors={props.errors}
-            header={
-                <div className="flex justify-between">
-                    <h2 className="font-semibold text-xl text-gray-800 leading-tight">
-                        Hello, Moderator
-                    </h2>
-                    <h2 className="text-end font-semibold text-xl text-gray-800 leading-tight">
-                        Role: {auth.user.user_level}
-                    </h2>
-                </div>
-            }
-        >
+        <>
             <div className="flex flex-col mt-3 md:flex-row gap-6 w-full p-4 md:p-8 ">
                 <div className="mb-4 bg-amber-300 p-4 rounded w-full md:w-full lg:w-1/2 xl:w-1/3">
                     <h1 className="block font-extrabold text-2xl md:text-4xl lg:text-5xl">
@@ -152,7 +137,7 @@ const ModeratorDashboard = (props) => {
             <div className="mt-8 mx-4">
                 <h2 className="text-xl font-semibold mb-4">Voting Results</h2>
             </div>
-        </AuthenticatedLayout>
+        </>
     );
 };
 
