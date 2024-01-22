@@ -1,12 +1,27 @@
 import React, { useState } from "react";
+import DeletePopUpModal from "./DeletePopUpModal";
+const TableData = ({ users }) => {
+    const [deleteModalOpen, setDeleteModalOpen] = useState(false);
+    const [selectedUserId, setSelectedUserId] = useState(null);
 
-const TableData = ({ users}) => {
-   
-    console.log(users);
+    const openDeleteModal = (userId) => {
+        setSelectedUserId(userId);
+        setDeleteModalOpen(true);
+    };
+
+    const closeDeleteModal = () => {
+        setSelectedUserId(null);
+        setDeleteModalOpen(false);
+    };
+
+    const handleDelete = () => {
+        // Implement your delete logic here
+        // You can call an API to delete the user with the selectedUserId, update the state, etc.
+        console.log("Deleting user with ID:", selectedUserId);
+        closeDeleteModal();
+    };
     return (
         <>
-         
-
             <div className="relative overflow-x-auto shadow-md sm:rounded-lg mx-3">
                 <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
                     <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
@@ -20,9 +35,7 @@ const TableData = ({ users}) => {
                             <th scope="col" className="px-6 py-3">
                                 Email
                             </th>
-                            <th scope="col" className="px-6 py-3">
-                                Password
-                            </th>
+
                             <th scope="col" className="px-6 py-3">
                                 Role
                             </th>
@@ -46,24 +59,23 @@ const TableData = ({ users}) => {
                                 </td>
                                 <td className="px-6 py-4">{user.name}</td>
                                 <td className="px-6 py-4">{user.email}</td>
-                                <td className="px-6 py-4">{user.password}</td>
+
                                 <td className="px-6 py-4">{user.user_level}</td>
                                 <td className="px-6 py-4">
                                     <div className="d-flex gap-2">
-                                        <button
-                                            className="font-medium text-blue-600 dark:text-blue-500 hover:underline"
-                                           
-                                        >
+                                        <button className="font-medium text-blue-600 dark:text-blue-500 hover:underline">
                                             Edit
                                         </button>
-                                        <button
-                                            className="font-medium text-red-600 dark:text-red-500 hover:underline"
-                                           
-                                        >
+                                        <button className="font-medium text-red-600 dark:text-red-500 hover:underline">
                                             Delete
                                         </button>
                                     </div>
                                 </td>
+                                <DeletePopUpModal
+                                    isOpen={deleteModalOpen}
+                                    onClose={closeDeleteModal}
+                                    onDelete={handleDelete}
+                                />
                             </tr>
                         ))}
                     </tbody>

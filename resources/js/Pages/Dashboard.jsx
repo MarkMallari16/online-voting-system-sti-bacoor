@@ -6,7 +6,7 @@ import VoterDashboard from "./VoterDashboard";
 
 export default function Dashboard({auth,users}) {
     
-    console.log(users);
+    // console.log(users);
     const userLevel = auth.user.user_level;
 
    

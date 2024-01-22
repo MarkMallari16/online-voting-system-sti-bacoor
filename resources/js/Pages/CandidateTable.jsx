@@ -38,8 +38,16 @@ const CandidateTable = () => {
                             Details
                         </td>
 
-                        <td scope="col" className="px-6 py-3">
-                            Action
+                        
+                        <td className="px-6 py-4">
+                            <div className="d-flex gap-2">
+                                <button className="font-medium text-blue-600 dark:text-blue-500 hover:underline">
+                                    Edit
+                                </button>
+                                <button className="font-medium text-red-600 dark:text-red-500 hover:underline">
+                                    Delete
+                                </button>
+                            </div>
                         </td>
                     </tr>
                 </tbody>
