@@ -6,7 +6,7 @@ const Footer = () => {
     return (
         <div className="flex flex-col sm:flex-row justify-between p-3 bg-gray-800 text-white rounded mx-3">
             <div className="social-media-links ">
-                <a href={fbURL} className="flex items-center mb-4 sm:mb-0 cursor-pointer text-white no-underline ">
+                <a href={fbURL} className="flex items-center  sm:mb-0 cursor-pointer text-white no-underline ">
                     <FaFacebookSquare className="mr-2 hover:text-yellow-400" />
                     <div className="text-sm ">
                         STI COLLEGE BACOOR SHS STUDENT COUNCIL PAGE

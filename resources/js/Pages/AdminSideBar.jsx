@@ -40,7 +40,7 @@ const AdminSideBar = () => {
                             Dashboard
                         </Sidebar.Item>
                     </Sidebar.ItemGroup>
-                    <Sidebar.ItemGroup>
+                    {/* <Sidebar.ItemGroup>
                         <Sidebar.Item href="#" icon={HiChartPie}>
                             Upgrade to Pro
                         </Sidebar.Item>
@@ -50,7 +50,7 @@ const AdminSideBar = () => {
                         <Sidebar.Item href="#" icon={BiBuoy}>
                             Help
                         </Sidebar.Item>
-                    </Sidebar.ItemGroup>
+                    </Sidebar.ItemGroup> */}
                 </Sidebar.Items>
                 
             </Sidebar>

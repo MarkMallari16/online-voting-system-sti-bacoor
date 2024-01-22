@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState ,useContext} from "react";
 import ApplicationLogo from "@/Components/ApplicationLogo";
 import Dropdown from "@/Components/Dropdown";
 import NavLink from "@/Components/NavLink";
@@ -34,6 +34,22 @@ export default function Authenticated({ auth, header, children }) {
                                     active={route().current("dashboard")}
                                 >
                                     Dashboard
+                                </NavLink>
+                            </div>
+                            <div className="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                                <NavLink
+                                    href={route("admindashboard")}
+                                    active={route().current("admindashboard")}
+                                >
+                                    Admin Dashboard
+                                </NavLink>
+                            </div>
+                            <div className="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                                <NavLink
+                                    href={route("moderatordashboard")}
+                                    active={route().current("moderatordashboard")}
+                                >
+                                    Moderator Dashboard
                                 </NavLink>
                             </div>
                         </div>

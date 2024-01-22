@@ -21,6 +21,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'profile_picture'
     ];
 
     /**
@@ -41,4 +42,22 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+    public function admin()
+{
+    return $this->user_level === 'admin';
 }
+
+public function moderator()
+{
+    return $this->user_level === 'moderator';
+}
+    public function partylists()
+    {
+        return $this->hasMany(Partylist::class);
+    }
+
+    public function ballot()
+    {
+        return $this->hasOne(Ballot::class);
+    }
+}   
