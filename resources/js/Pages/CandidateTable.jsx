@@ -10,13 +10,13 @@ const CandidateTable = () => {
                             User ID
                         </th>
                         <th scope="col" className="px-6 py-3">
-                            Name
+                            Candidate Name
                         </th>
                         <th scope="col" className="px-6 py-3">
-                            Email
+                            Partylist
                         </th>
                         <th scope="col" className="px-6 py-3">
-                            Role
+                            Details
                         </th>
                         <th scope="col" className="px-6 py-3">
                             Action
@@ -24,7 +24,24 @@ const CandidateTable = () => {
                     </tr>
                 </thead>
                 <tbody>
-                   
+                    <tr>
+                        <td scope="col" className="px-6 py-3">
+                            1
+                        </td>
+                        <td scope="col" className="px-6 py-3">
+                            Faith Cabanlit
+                        </td>
+                        <td scope="col" className="px-6 py-3">
+                            Sandigan
+                        </td>
+                        <td scope="col" className="px-6 py-3">
+                            Details
+                        </td>
+
+                        <td scope="col" className="px-6 py-3">
+                            Action
+                        </td>
+                    </tr>
                 </tbody>
             </table>
         </div>

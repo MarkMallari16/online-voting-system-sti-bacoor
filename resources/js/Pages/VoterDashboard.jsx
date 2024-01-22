@@ -20,12 +20,12 @@ const VoterDashboard = ({ auth }) => {
             password: newUserPassword,
             user_level: newUserRole,
         };
-    
+
         onAddUser(newUserData);
         setIsModalVisible(false);
     };
     return (
-        <AuthenticatedLayout auth={auth}>
+        <>
             <div className="py-12">
                 <div className="max-w-7xl mx-auto sm:px-6 lg:px-8">
                     {/* Section 1: View Party Lists */}
@@ -120,7 +120,7 @@ const VoterDashboard = ({ auth }) => {
                     </div>
                 </div>
             </div>
-        </AuthenticatedLayout>
+        </>
     );
 };
 
