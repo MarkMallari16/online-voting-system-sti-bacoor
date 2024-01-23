@@ -4,6 +4,7 @@
     use Illuminate\Foundation\Application;
     use Illuminate\Support\Facades\Route;
     use Inertia\Inertia;
+    use App\Http\Controllers\CandidateController;
     use App\Http\Controllers\DashboardController;
 
     /*
@@ -40,6 +41,7 @@
 
     //Main Page
     Route::get('/home', [DashboardController::class, 'home'])->middleware(['verified'])->name('home');
+    Route::post('/cadidate', [CandidateController::class, 'store'])->middleware(['auth', 'verified'])->name('candidate.store');
 
 
     Route::middleware('auth')->group(function () {
@@ -48,5 +50,4 @@
         Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     });
 
-    Route::post('/logout', [LogoutController::class, 'logout'])->name('logout');
-    require __DIR__.'/auth.php';
+    require __DIR__ . '/auth.php';
