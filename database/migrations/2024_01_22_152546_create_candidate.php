@@ -17,7 +17,9 @@ return new class extends Migration
             $table->id();
             // $table->foreignId('candidate_id')->constrained('partylist');
             $table->string('name');
-            $table->string('avatar');
+            //$table->string('avatar');
+            $table->text('description');
+            $table->text('platform');
             $table->timestamps();
         });
     }

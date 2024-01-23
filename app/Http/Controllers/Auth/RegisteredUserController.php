@@ -35,18 +35,17 @@ class RegisteredUserController extends Controller
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:' . User::class,
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
-            'user_level' => 'required|string|max:255',
+
         ]);
 
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
-            'user_level' => $request->user_level,
+            'user_level' => $request->user_level ?? 'voter', // Set the default value to 'voter'
         ]);
 
         event(new Registered($user));
-
 
 
         return redirect()->route('dashboard');
