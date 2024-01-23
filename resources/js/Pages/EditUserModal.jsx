@@ -1,55 +1,69 @@
 import React, { useState, useEffect } from "react";
 
-import { FaPlus } from "react-icons/fa";
-import {  useForm } from "@inertiajs/react";
+import { Inertia } from "@inertiajs/inertia";
 
-export default function AddUserModal() {
-    const [showModal, setShowModal] = useState(false);
+const EditUserModal = ({ showModal, onClose, user }) => {
+    const [userData, setUserData] = useState({
+        name: "",
+        email: "",
+        user_level: "",
+        password: "",
+        password_confirmation: "",
+    });
 
-    const { data, setData, post, processing, errors, reset } = useForm({
+    const [errors, setErrors] = useState({
         name: "",
         email: "",
         password: "",
-        user_level: "",
         password_confirmation: "",
+        user_level: "",
     });
-    useEffect(() => {
-        return () => {
-            reset("password", "password_confirmation");
-        };
-    }, []);
 
     const handleOnChange = (event) => {
-        setData(
-            event.target.name,
-            event.target.type === "checkbox"
-                ? event.target.checked
-                : event.target.value
-        );
+        setUserData({
+            ...userData,
+            [event.target.name]: event.target.value,
+        });
+
+        setErrors({
+            ...errors,
+            [event.target.name]: "",
+        });
     };
 
     const submit = async (e) => {
         e.preventDefault();
-
-        post(route("register"), {
-            onSuccess: () => {
-                setShowModal(false);
-            },
-        });
+    
+        try {
+            await Inertia.put(`users/${user.id}`, userData, {
+                onSuccess: () => {
+                    console.log(user.id)
+                    onClose(true);
+                },
+                onError: (errors) => {
+                    console.log(user.id)
+                    setErrors(errors);
+                },
+            });
+        } catch (error) {
+            console.error("Error updating user:", error);
+        }
     };
 
+    useEffect(() => {
+        // Set initial user data when the component mounts
+        if (user && user.id) {
+            setUserData({
+                name: user.name,
+                email: user.email,
+                user_level: user.user_level,
+            });
+        }
+    }, [user]);
+
+    
     return (
-        <>
-            <div>
-                <div className="mx-3  text-white flex justify-end font-bold">
-                    <button
-                        className="bg-blue-500 p-2 rounded-sm text-sm flex items-center gap-1"
-                        onClick={() => setShowModal(true)}
-                    >
-                        <FaPlus /> Add User
-                    </button>
-                </div>
-            </div>
+        <div>
             {showModal ? (
                 <>
                     <div className="justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none w-100">
@@ -60,11 +74,11 @@ export default function AddUserModal() {
                                     {/*header*/}
                                     <div className="flex items-start justify-between p-3 border-b border-solid border-blueGray-200 rounded-t">
                                         <h3 className="font-semibold">
-                                            Add User
+                                            Update User
                                         </h3>
                                         <button
                                             className="p-1 ml-auto bg-transparent border-0 text-black opacity-5 float-right text-3xl leading-none font-semibold outline-none focus:outline-none"
-                                            onClick={() => setShowModal(false)}
+                                            onClick={() => onClose(false)}
                                         >
                                             <span className="bg-transparent text-black opacity-5 h-6 w-6 text-2xl block outline-none focus:outline-none">
                                                 ×
@@ -84,7 +98,7 @@ export default function AddUserModal() {
                                                 <input
                                                     type="text"
                                                     name="name"
-                                                    value={data.name}
+                                                    value={userData.name}
                                                     onChange={handleOnChange}
                                                     id="name-input"
                                                     className={`${
@@ -93,11 +107,11 @@ export default function AddUserModal() {
                                                             : "border-gray-300"
                                                     } bg-gray-50 border text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500`}
                                                 />
-                                                {errors.name && (
+                                                {/* {errors.name && (
                                                     <p className="text-red-500 text-sm mt-1">
                                                         {errors.name}
                                                     </p>
-                                                )}
+                                                )} */}
                                             </div>
                                             <div className="my-3 text-left">
                                                 <label
@@ -109,7 +123,7 @@ export default function AddUserModal() {
                                                 <input
                                                     type="email"
                                                     name="email"
-                                                    value={data.email}
+                                                    value={userData.email}
                                                     onChange={handleOnChange}
                                                     id="email-input"
                                                     className={`${
@@ -134,7 +148,7 @@ export default function AddUserModal() {
                                                 <input
                                                     type="password"
                                                     name="password"
-                                                    value={data.password}
+                                                    value={userData.password}
                                                     onChange={handleOnChange}
                                                     id="password-input"
                                                     className={`${
@@ -160,7 +174,7 @@ export default function AddUserModal() {
                                                     type="password"
                                                     name="password_confirmation"
                                                     value={
-                                                        data.password_confirmation
+                                                        userData.password_confirmation
                                                     }
                                                     id="password_confirmation-input"
                                                     onChange={handleOnChange}
@@ -189,7 +203,7 @@ export default function AddUserModal() {
                                                 <select
                                                     id="role-selector"
                                                     name="user_level"
-                                                    value={data.user_level}
+                                                    value={userData.user_level}
                                                     className={`${
                                                         errors.name
                                                             ? "border-red-500"
@@ -218,16 +232,16 @@ export default function AddUserModal() {
                                     </div>
 
                                     {/*footer*/}
-                                    <div className="flex items-center justify-end p-4 border-t border-solid border-blueGray-200 rounded-b">
+                                    <div className="flex items-center justify-end p-6 border-t border-solid border-blueGray-200 rounded-b">
                                         <button
                                             className="text-red-500 background-transparent font-bold uppercase px-6 py-2 text-sm outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
                                             type="button"
-                                           onClick={() => setShowModal(false)}
+                                            onClick={() => onClose(false)}
                                         >
                                             Close
                                         </button>
                                         <button
-                                            className="bg-blue-500 text-white active:bg-emerald-600 font-bold uppercase text-sm px-6 py-2 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150 "
+                                            className="bg-blue-500 text-white active:bg-emerald-600 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150 "
                                             type="submit"
                                         >
                                             Save
@@ -240,6 +254,8 @@ export default function AddUserModal() {
                     <div className="opacity-25 fixed inset-0 z-40 bg-black"></div>
                 </>
             ) : null}
-        </>
+        </div>
     );
-}
+};
+
+export default EditUserModal;

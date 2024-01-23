@@ -11,14 +11,15 @@ return new class extends Migration
      *
      * @return void
      */
-    public function up()
-    {
-        Schema::create('votes', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId('candidate_id')->constrained('users');
-            $table->timestamps();
-        });
-    }
+        public function up()
+        {
+            Schema::create('votes', function (Blueprint $table) {
+                $table->id();
+                $table->foreignId('user_id')->constrained('users');
+                $table->foreignId('candidate_id')->constrained('candidates');
+                $table->timestamps();
+            });
+        }
 
     /**
      * Reverse the migrations.

@@ -18,3 +18,11 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 Route::get('/users', [UserController::class, 'index']);
+Route::put('/users/{id}', 'UserController@update');
+
+
+
+// Route::get('/candidates', [CandidateController::class, 'index']);
+// Route::post('/candidates', [CandidateController::class, 'store']);
+// Route::put('/candidates/{id}', [CandidateController::class, 'update']);
+// Route::delete('/candidates/{id}', [CandidateController::class, 'destroy']);

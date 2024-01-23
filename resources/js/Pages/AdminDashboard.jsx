@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect} from "react";
 
 import { FaUser, FaUserShield, FaUsers } from "react-icons/fa";
 import TableData from "./TableData";
 import axios from "axios";
-import Modal from "./AddUserModal";
-import AdminUpdateUserModal from "./AdminUpdateUserModal";
+
+
 const AdminDashboard = (props) => {
     const [users, setUsers] = useState([]);
 
@@ -12,6 +12,8 @@ const AdminDashboard = (props) => {
         try {
             const response = await axios.get("/api/users");
             setUsers(response.data.users);
+
+            
         } catch (error) {
             console.error("Error fetching users:", error);
         }
@@ -28,6 +30,7 @@ const AdminDashboard = (props) => {
         (user) => user.user_level === "moderator"
     );
 
+    
     const votersObject = {};
 
     voters.forEach((voter) => {
@@ -88,15 +91,11 @@ const AdminDashboard = (props) => {
                 </div>
             </div>
 
-            <div>
-                <Modal />
-            </div>
-            <div>
-                <AdminUpdateUserModal />
-            </div>
+           
+           
             <TableData
                 className="mx-3"
-                users={users} // Pass the local state 'users' instead of 'props.users'
+                users={users} 
             />
         </>
     );

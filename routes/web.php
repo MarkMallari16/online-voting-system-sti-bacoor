@@ -5,7 +5,7 @@
     use Illuminate\Support\Facades\Route;
     use Inertia\Inertia;
     use App\Http\Controllers\DashboardController;
-
+    use App\Http\Controllers\UserController;
     /*
     |--------------------------------------------------------------------------
     | Web Routes
@@ -42,6 +42,14 @@
     Route::get('/home', [DashboardController::class, 'home'])->middleware(['verified'])->name('home');
 
 
+    Route::resource('candidates', CandidateController::class);
+    
+    //delete user
+    Route::delete('/users/{user}', [UserController::class, 'destroy']);
+    //update user
+    Route::put('/users/{id}',[UserController::class, 'update']);
+
+    
     Route::middleware('auth')->group(function () {
         Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
         Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');

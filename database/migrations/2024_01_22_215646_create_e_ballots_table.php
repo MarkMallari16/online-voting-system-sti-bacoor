@@ -13,11 +13,8 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('candidate', function (Blueprint $table) {
+        Schema::create('e_ballots', function (Blueprint $table) {
             $table->id();
-            // $table->foreignId('candidate_id')->constrained('partylist');
-            $table->string('name');
-            $table->string('avatar');
             $table->timestamps();
         });
     }
@@ -29,6 +26,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('candidate');
+        Schema::dropIfExists('e_ballots');
     }
 };

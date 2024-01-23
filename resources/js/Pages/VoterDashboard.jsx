@@ -1,38 +1,25 @@
-import React from "react";
+import React, { useState } from "react";
 import SanaolPartylist from "../Pages/assets/sanaol-partylist.jpg";
 import SandiganPartylist from "../Pages/assets/sandigan-partylist.jpg";
 import CandidateCard from "./CandidateCard";
 import LiveResultComponent from "./LiveResultComponent";
-import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
-
+import Footer from "./Footer";
+import CastedVotes from "./CastedVotes";
 const VoterDashboard = ({ auth }) => {
-    const handleVote = (positionId, partyListId) => {};
-
     const partyLists = [
         { src: SanaolPartylist, alt: "Sanaol partylist" },
         { src: SandiganPartylist, alt: "Sandigan partylist" },
     ];
-
-    const handleAddConfirm = () => {
-        const newUserData = {
-            name: newUserName,
-            email: newUserEmail,
-            password: newUserPassword,
-            user_level: newUserRole,
-        };
-
-        onAddUser(newUserData);
-        setIsModalVisible(false);
-    };
+    
+ 
+    const [showCastedVote,setShowCastedVote] = useState(false);
     return (
         <>
             <div className="py-12">
                 <div className="max-w-7xl mx-auto sm:px-6 lg:px-8">
                     {/* Section 1: View Party Lists */}
                     <div className="bg-white overflow-hidden shadow-sm sm:rounded-lg mb-2 p-3">
-                        <h3 className="text-lg font-semibold mb-4">
-                            Party Lists
-                        </h3>
+                        <h3 className=" font-semibold mb-4">Party Lists</h3>
                         <div className="partylist-container flex flex-col sm:flex-row gap-2">
                             {partyLists.map((partylist, index) => (
                                 <div
@@ -48,13 +35,22 @@ const VoterDashboard = ({ auth }) => {
                             ))}
                         </div>
                     </div>
-                    <div>
-                        <LiveResultComponent />
+                    <div className="flex justify-between items-center mt-10 mb-3">
+                        <div className="text-2xl  font-bold">
+                            You May Now Cast Your Vote
+                        </div>
+                        <button
+                            className="bg-blue-500 rounded p-2 text-white font-bold"
+                            onClick={() => setShowCastedVote(true)}
+                        >
+                            See Casted Votes
+                        </button>
                     </div>
+                   
 
-                    <div className="text-2xl mt-4 mb-2 font-bold">
-                        You May Now Cast Your Vote
-                    </div>
+
+
+
                     <div className="bg-white  p-4 w-auto">
                         <div className="mt-3 position-container text-center">
                             <h4 className="font-bold">
@@ -78,7 +74,7 @@ const VoterDashboard = ({ auth }) => {
                     <div className="bg-white mt-4 p-4">
                         <div className=" position-container text-center ">
                             <h4 className="font-bold">
-                                Vice President Council
+                                Vice President Student Council
                             </h4>
                             <div className="text-gray-500">
                                 You can only vote for one candidate
@@ -113,13 +109,18 @@ const VoterDashboard = ({ auth }) => {
                             />
                         </div>
                     </div>
-                    <div className="submit-btn text-center">
+                    <div className="submit-btn text-center mt-4 ">
                         <button className="px-4 py-2 rounded bg-gray-500 hover:bg-gray-700 transition ease-in duration-100 text-white">
                             Submit Vote
                         </button>
                     </div>
+                    <div>
+                        <LiveResultComponent text="Live Results" />
+                    </div>
                 </div>
             </div>
+            <CastedVotes showModal={showCastedVote} onClose={() => setShowCastedVote(false)}/>
+            <Footer />
         </>
     );
 };

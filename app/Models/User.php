@@ -52,13 +52,4 @@ public function moderator()
 {
     return $this->user_level === 'moderator';
 }
-    public function partylists()
-    {
-        return $this->hasMany(Partylist::class);
-    }
-
-    public function ballot()
-    {
-        return $this->hasOne(Ballot::class);
-    }
 }   

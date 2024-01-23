@@ -1,7 +1,7 @@
 import { Link, Head } from "@inertiajs/react";
 import SHSLogo from "../Pages/assets/Logo.png";
-import MainPage from "../Pages/assets/mainPage2.png";
-import { useState,useEffect } from "react";
+import MainPage from "../Pages/assets/mainPage5.png";
+import { useState, useEffect } from "react";
 import Footer from "./Footer";
 export default function Welcome(props) {
     const [isScrolled, setIsScrolled] = useState(false);
@@ -19,9 +19,9 @@ export default function Welcome(props) {
     return (
         <>
             <img src={SHSLogo} className="w-20" />
-            <Head title="Welcome" />
+           
             <div
-                className={`relative sm:flex sm:justify-center sm:items-center min-h-screen bg-dots-darker bg-center bg-gray-100 dark:bg-dots-lighter dark:bg-gray-900 selection:bg-red-500 selection:text-white ${
+                className={`relative sm:flex sm:justify-center sm:items-center min-h-screen bg-dots-darker bg-center bg-gray-100 dark:bg-dots-lighter dark:bg-gray-900  selection:text-white ${
                     isScrolled ? "scrolled" : ""
                 }`}
             >
@@ -35,34 +35,32 @@ export default function Welcome(props) {
                         </Link>
                     ) : (
                         <>
-                            <Link
-                                href={route("login")}
+                            {/* <Link
+                                href={route("register")}
                                 className={`font-semibold no-underline ${
                                     isScrolled ? "text-white" : "text-gray-600"
                                 } hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm`}
                             >
                                 Log in
-                            </Link>
+                            </Link> */}
 
                             <Link
-                                href={route("register")}
-                                className={`ml-4 font-semibold no-underline text-gray-600 bg-amber-400 px-3 py-2 rounded-md hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm ${
+                                href={route("login")}
+                                className={`flex items-center ml-4 font-semibold no-underline text-white   bg-amber-400 p-2 text-sm rounded-md hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm ${
                                     isScrolled ? "text-white" : "text-gray-600"
                                 } hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm}`}
                             >
-                                Register
+                                LOG IN
                             </Link>
                         </>
                     )}
                 </div>
 
-                <div className="main-page-container m-3">
-                    <img src={MainPage} alt="Logo"className="rounded-md" />
+                <div className="main-page-container">
+                    <img src={MainPage} alt="Logo" className="rounded-md" />
                 </div>
-
-               
             </div>
-            <Footer/>
+            <Footer />
             <style>{`
                 /* ... Your existing styles ... */
 

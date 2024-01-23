@@ -13,8 +13,14 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('ballots', function (Blueprint $table) {
+        Schema::create('candidates', function (Blueprint $table) {
             $table->id();
+            $table->string('candidate_number')->unique();
+            $table->string('name');
+            $table->string('party_list')->nullable();
+            $table->string('position');
+            $table->text('platform');
+            $table->string('avatar');
             $table->timestamps();
         });
     }
@@ -26,6 +32,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('ballots');
+        Schema::dropIfExists('candidates');
     }
 };
