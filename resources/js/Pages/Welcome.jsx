@@ -18,8 +18,9 @@ export default function Welcome(props) {
 
     return (
         <>
-            <img src={SHSLogo} className="w-20" />
-           
+           <div className="w-25">
+           <img src={SHSLogo} className="w-50 object-cover" />
+           </div>
             <div
                 className={`relative sm:flex sm:justify-center sm:items-center min-h-screen bg-dots-darker bg-center bg-gray-100 dark:bg-dots-lighter dark:bg-gray-900  selection:text-white ${
                     isScrolled ? "scrolled" : ""
@@ -41,27 +42,52 @@ export default function Welcome(props) {
                                     isScrolled ? "text-white" : "text-gray-600"
                                 } hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm`}
                             >
-                                Log in
+                                Register
                             </Link> */}
 
-                            <Link
-                                href={route("login")}
-                                className={`flex items-center ml-4 font-semibold no-underline text-white   bg-amber-400 p-2 text-sm rounded-md hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm ${
-                                    isScrolled ? "text-white" : "text-gray-600"
-                                } hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm}`}
-                            >
-                                LOG IN
-                            </Link>
+                            <div className="flex">
+                                <Link
+                                    href={route("login")}
+                                    className={`flex items-center ml-4 font-semibold no-underline text-white   bg-amber-400 px-3 py-2 text-sm rounded-md hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm ${
+                                        isScrolled
+                                            ? "text-white"
+                                            : "text-gray-600"
+                                    } hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm}`}
+                                >
+                                    LOG IN
+                                </Link>
+                                <Link
+                                    href={route("login")}
+                                    className={`flex items-center ml-4 font-semibold no-underline text-white   bg-amber-400 px-3 py-2 text-sm rounded-md hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm ${
+                                        isScrolled
+                                            ? "text-white"
+                                            : "text-gray-600"
+                                    } hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm}`}
+                                >
+                                    LOG IN
+                                </Link>
+                                <Link
+                                    href={route("login")}
+                                    className={`flex items-center ml-4 font-semibold no-underline text-white   bg-amber-400 px-3 py-2 text-sm rounded-md hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm ${
+                                        isScrolled
+                                            ? "text-white"
+                                            : "text-gray-600"
+                                    } hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm}`}
+                                >
+                                    LOG IN
+                                </Link>
+                            </div>
                         </>
                     )}
                 </div>
-
-                <div className="main-page-container">
+                <div className="main-page-container object-cover w-100">
                     <img src={MainPage} alt="Logo" className="rounded-md" />
                 </div>
             </div>
+
             <Footer />
-            <style>{`
+            <style>
+                {`
                 /* ... Your existing styles ... */
 
                 .scrolled .bg-dots-darker {
@@ -79,7 +105,9 @@ export default function Welcome(props) {
                 }
 
                 /* ... Your existing dark mode styles ... */
-            `}</style>
+                
+            `}
+            </style>
         </>
     );
 }

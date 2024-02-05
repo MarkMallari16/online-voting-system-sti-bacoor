@@ -1,9 +1,14 @@
 import React from "react";
 import { FaUserCircle, FaUsers } from "react-icons/fa";
-const ViewDetailsModal = ({ showModal, onClose, position }) => {
+const ViewDetailsModal = ({
+    showModal,
+    onClose,
+    name,
+    position,
+    partyList,
+}) => {
     return (
         <div>
-         
             {showModal ? (
                 <>
                     <div className="justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none">
@@ -21,7 +26,7 @@ const ViewDetailsModal = ({ showModal, onClose, position }) => {
                                                 Vote
                                             </span>
                                             <h3 className="font-extrabold text-slate-600">
-                                                Faith Cabanlit
+                                                {name}
                                             </h3>
                                             <div className="flex items-center gap-1">
                                                 <h4 className="font-medium text-slate-500">
@@ -34,7 +39,7 @@ const ViewDetailsModal = ({ showModal, onClose, position }) => {
                                             <div className="flex items-center gap-1">
                                                 <FaUsers className="text-slate-500 text-xl" />
                                                 <span className="font-bold text-slate-600">
-                                                    Sandigan Partylist
+                                                    {partyList} Partylist
                                                 </span>
                                             </div>
                                         </div>
@@ -55,36 +60,20 @@ const ViewDetailsModal = ({ showModal, onClose, position }) => {
                                     </h4>
                                     <div className="text-slate-700">
                                         <p>
-                                            1. Lorem ipsum dolor sit amet
-                                            consectetur, adipisicing elit.
-                                            Numquam expedita placeat modi
-                                            repellendus repellat laudantium
-                                            minus nihil delectus? Vero,
-                                            consectetur?
+                                            1. I am committed to improving
+                                            education by investing in modern
+                                            teaching technologies, supporting
+                                            teachers, and ensuring access to
+                                            quality education for all students.
                                         </p>
                                         <p>
-                                            2. Lorem ipsum dolor sit amet
-                                            consectetur, adipisicing elit.
-                                            Numquam expedita placeat modi
-                                            repellendus repellat laudantium
-                                            minus nihil delectus? Vero,
-                                            consectetur?
+                                            2. My focus is on healthcare reform, advocating for affordable and accessible healthcare services, mental health awareness, and initiatives to improve overall community well-being.
                                         </p>
                                         <p>
-                                            3. Lorem ipsum dolor sit amet
-                                            consectetur, adipisicing elit.
-                                            Numquam expedita placeat modi
-                                            repellendus repellat laudantium
-                                            minus nihil delectus? Vero,
-                                            consectetur?
+                                            3. As a business leader, I aim to boost the local economy by attracting new businesses, creating job opportunities, and supporting entrepreneurship within our community.
                                         </p>
                                         <p>
-                                            4. Lorem ipsum dolor sit amet
-                                            consectetur, adipisicing elit.
-                                            Numquam expedita placeat modi
-                                            repellendus repellat laudantium
-                                            minus nihil delectus? Vero,
-                                            consectetur?
+                                            4. I am passionate about environmental sustainability, and my platform includes initiatives to promote renewable energy, reduce carbon footprint, and preserve natural habitats in our region.
                                         </p>
                                     </div>
                                 </div>

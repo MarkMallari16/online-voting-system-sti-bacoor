@@ -13,7 +13,7 @@ const Footer = () => {
                     </div>
                 </a>
             </div>
-            <div className="other-links flex flex-col sm:flex-row gap-3 mx-5 ">
+            {/* <div className="other-links flex flex-col sm:flex-row gap-3 mx-5 ">
                 <div>
                     <a href="#" className="text-sm text-white no-underline ">
                         About
@@ -24,7 +24,7 @@ const Footer = () => {
                         Contact
                     </a>
                 </div>
-            </div>
+            </div> */}
         </div>
     );
 };

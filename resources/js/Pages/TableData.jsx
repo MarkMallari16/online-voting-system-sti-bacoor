@@ -6,6 +6,8 @@ import AddUserModal from "./AddUserModal";
 import EditUserModal from "./EditUserModal";
 import DeleteConfirmationModal from "./DeleteConfirmationModal";
 
+
+
 const TableData = ({ users }) => {
     const [searchInput, setSearchInput] = useState("");
     const [currentPage, setCurrentPage] = useState(1);
@@ -61,7 +63,7 @@ const TableData = ({ users }) => {
     return (
         <>
             <AddUserModal />
-            <div className="relative overflow-x-auto shadow-md sm:rounded-lg mx-3">
+            <div className="relative overflow-x-auto shadow-md sm:rounded-lg mx-3 ">
                 <div className="mb-4 flex justify-end flex-col">
                     <label
                         htmlFor="search"
@@ -75,7 +77,7 @@ const TableData = ({ users }) => {
                         value={searchInput}
                         onChange={handleSearch}
                         className="w-100 border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:text-white"
-                        placeholder="search here..."
+                        placeholder="search user..."
                     />
                 </div>
                 <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">

@@ -6,6 +6,8 @@
     use Inertia\Inertia;
     use App\Http\Controllers\DashboardController;
     use App\Http\Controllers\UserController;
+    use App\Http\Controllers\CandidateController;
+
     /*
     |--------------------------------------------------------------------------
     | Web Routes
@@ -49,7 +51,11 @@
     //update user
     Route::put('/users/{id}',[UserController::class, 'update']);
 
-    
+    //candidate 
+    Route::get('/candidates', [CandidateController::class, 'index'])->name('candidates.index');
+    Route::post('/candidates', [CandidateController::class, 'store'])->name('candidates.store');
+
+
     Route::middleware('auth')->group(function () {
         Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
         Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');

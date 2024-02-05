@@ -14,8 +14,12 @@ class CandidateController extends Controller
 
     public function store(Request $request)
     {
+        // Validate your request here if needed
+    
         $candidate = Candidate::create($request->all());
-        return response()->json($candidate);
+    
+        // If using Inertia, you might return the candidate data or redirect back
+        return redirect()->route('candidates.index')->with('success', 'Candidate added successfully');
     }
 
     public function show($id)

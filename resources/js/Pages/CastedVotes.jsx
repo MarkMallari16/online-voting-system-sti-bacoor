@@ -24,9 +24,13 @@ const CastedVotes = ({ showModal, onClose, position }) => {
                                 </div>
                                 {/*body*/}
                                 <div className="relative p-6 flex-auto">
-                                    <CastedVoteLayout position="President" name="Gagap"/>
-                                    <CastedVoteLayout position="Vice President" name="Rodriguez"/>
-                                    <CastedVoteLayout position="Secretart" name="Caagahon"/>
+                                    <CastedVoteLayout position="President" name="Faith Cabanlit"/>
+                                    <CastedVoteLayout position="Vice President" name="Gagap"/>
+                                    <CastedVoteLayout position="Secretary" name="Acuna"/>
+                                    <CastedVoteLayout position="Treasurer" name="Caagahon"/>
+                                    <CastedVoteLayout position="Auditor" name="Sulleza"/>
+                                    <CastedVoteLayout position="P.R.O" name="Latorre"/>
+                                    
                                 </div>
                                 {/*footer*/}
                                 <div className="flex items-center justify-end p-6 border-t border-solid border-blueGray-200 rounded-b">

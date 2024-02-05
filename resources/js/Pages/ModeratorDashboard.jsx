@@ -27,7 +27,7 @@ const ModeratorDashboard = (props) => {
                 <div className="mb-4 bg-amber-300 p-4 rounded w-full md:w-full lg:w-1/2 xl:w-1/3">
                     
                     <h1 className="block font-extrabold text-2xl md:text-4xl lg:text-5xl">
-                        {votersCount}
+                        2
                     </h1>
                     <div className="flex items-center mt-2">
                         <FaUsers />
@@ -40,7 +40,7 @@ const ModeratorDashboard = (props) => {
                 <div className="mb-4 bg-slate-300 p-4 rounded w-full md:w-full lg:w-1/2 xl:w-1/3">
                   
                     <h1 className="block font-extrabold text-2xl md:text-4xl lg:text-5xl">
-                        {votersCount}
+                        12
                     </h1>
                     <div className="flex items-center mt-2">
                         <FaUserTie />

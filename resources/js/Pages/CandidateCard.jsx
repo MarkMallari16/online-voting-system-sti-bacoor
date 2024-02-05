@@ -40,8 +40,18 @@ const CandidateCard = ({ name, partylist }) => {
             <ViewDetailsModal
                 showModal={showDetailsModal}
                 onClose={() => setShowDetailsModal(false)}
-                position="PRESIDENT"
+                name="Candidate Name"
+                position="POSITION"
+                partyList="Name"
             />
+            {/* <ViewDetailsModal
+                showModal={showDetailsModal}
+                onClose={() => setShowDetailsModal(false)}
+                name="Cassandra Abaigar"
+                position="PRESIDENT"
+                partyList="Name"
+            /> */}
+        
         </div>
     );
 };

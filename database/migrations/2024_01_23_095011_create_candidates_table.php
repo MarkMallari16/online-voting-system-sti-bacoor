@@ -18,12 +18,13 @@ return new class extends Migration
             $table->string('candidate_number')->unique();
             $table->string('name');
             $table->string('party_list')->nullable();
-            $table->string('position');
+            $table->text('position')->default('Unspecified');
             $table->text('platform');
             $table->string('avatar');
             $table->timestamps();
         });
     }
+
 
     /**
      * Reverse the migrations.

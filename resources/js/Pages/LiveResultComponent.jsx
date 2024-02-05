@@ -15,7 +15,7 @@ const LiveResultComponent = ({text}) => {
         },
         {
             position: "Vice President",
-            labels: ["Cabanlit", "Gagap"],
+            labels: ["Cangas", "Gagap"],
             datasets: [
                 {
                     label: "Default",
@@ -26,7 +26,7 @@ const LiveResultComponent = ({text}) => {
         },
         {
             position: "Secretary",
-            labels: ["Cangas", "Gagap"],
+            labels: ["Acuna", "Bagnas"],
             datasets: [
                 {
                     label: "Default",
@@ -37,7 +37,7 @@ const LiveResultComponent = ({text}) => {
         },
         {
             position: "Treasurer",
-            labels: ["Caagahon", "Dulom"],
+            labels: ["Dulom", "Caagahon"],
             datasets: [
                 {
                     label: "Default",
@@ -52,7 +52,7 @@ const LiveResultComponent = ({text}) => {
             datasets: [
                 {
                     label: "Default",
-                    data: [19, 212],
+                    data: [29, 45],
                     backgroundColor: ["#64748b", "#fbbf24"],
                 },
             ],

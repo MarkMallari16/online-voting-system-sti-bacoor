@@ -8,7 +8,6 @@ export default function Dashboard({auth,users}) {
     
     // console.log(users);
     const userLevel = auth.user.user_level;
-
    
     return (
         <AuthenticatedLayout auth={auth}>

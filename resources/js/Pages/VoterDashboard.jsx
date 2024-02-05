@@ -5,18 +5,26 @@ import CandidateCard from "./CandidateCard";
 import LiveResultComponent from "./LiveResultComponent";
 import Footer from "./Footer";
 import CastedVotes from "./CastedVotes";
-const VoterDashboard = ({ auth }) => {
+const VoterDashboard = ({auth}) => {
     const partyLists = [
         { src: SanaolPartylist, alt: "Sanaol partylist" },
         { src: SandiganPartylist, alt: "Sandigan partylist" },
     ];
-    
- 
-    const [showCastedVote,setShowCastedVote] = useState(false);
+
+    const [showCastedVote, setShowCastedVote] = useState(false);
     return (
         <>
             <div className="py-12">
                 <div className="max-w-7xl mx-auto sm:px-6 lg:px-8">
+                    <div className="bg-white overflow-hidden shadow-sm sm:rounded-lg mb-2 p-4">
+                        <h1>
+                            Hello, <span className="font-bold">Voter</span>!
+                        </h1>
+                        <p className="text-slate-400">
+                            Welcome to STI College Bacoor SHS Council Online
+                            Voting System
+                        </p>
+                    </div>
                     {/* Section 1: View Party Lists */}
                     <div className="bg-white overflow-hidden shadow-sm sm:rounded-lg mb-2 p-3">
                         <h3 className=" font-semibold mb-4">Party Lists</h3>
@@ -46,10 +54,6 @@ const VoterDashboard = ({ auth }) => {
                             See Casted Votes
                         </button>
                     </div>
-                   
-
-
-
 
                     <div className="bg-white  p-4 w-auto">
                         <div className="mt-3 position-container text-center">
@@ -62,12 +66,12 @@ const VoterDashboard = ({ auth }) => {
                         </div>
                         <div className="candidate-container flex justify-center candidate-container flex-col sm:flex-row  gap-4">
                             <CandidateCard
-                                name="Cailene Gagap"
-                                partylist="Sandigan Partylist"
+                                name="Faith Cabanlit"
+                                partylist="Sandigan"
                             />
                             <CandidateCard
-                                name="Faith Cabanlit"
-                                partylist="Sandigan Partylist"
+                                name="Cassandra Abaigar"
+                                partylist="Sanaol"
                             />
                         </div>
                     </div>
@@ -82,30 +86,92 @@ const VoterDashboard = ({ auth }) => {
                         </div>
                         <div className="candidate-container flex  candidate-container  flex-col sm:flex-row justify-center gap-4">
                             <CandidateCard
-                                name="Cailene Gagap"
-                                partylist="Sandigan Partylist"
+                                name="Raizza Cangas"
+                                partylist="Sandigan"
                             />
                             <CandidateCard
-                                name="Faith Cabanlit"
-                                partylist="Sandigan Partylist"
+                                name="Cailene Gagap"
+                                partylist="Sanaol"
                             />
                         </div>
                     </div>
                     <div className=" bg-white mt-4 p-4">
                         <div className=" position-container text-center">
-                            <h4 className="font-bold">Secretary Council</h4>
+                            <h4 className="font-bold">
+                                Secretary Student Council
+                            </h4>
                             <div className="text-gray-500">
                                 You can only vote for one candidate
                             </div>
                         </div>
                         <div className="candidate-container flex  candidate-container  flex-col sm:flex-row justify-center gap-4">
                             <CandidateCard
-                                name="Cailene Gagap"
+                                name="Janessa Acuna"
                                 partylist="Sandigan Partylist"
                             />
                             <CandidateCard
-                                name="Faith Cabanlit"
-                                partylist="Sandigan Partylist"
+                                name="Kenneth Bagnas"
+                                partylist="Sanaol"
+                            />
+                        </div>
+                    </div>
+
+                    <div className=" bg-white mt-4 p-4">
+                        <div className=" position-container text-center">
+                            <h4 className="font-bold">
+                                Treasurer Student Council
+                            </h4>
+                            <div className="text-gray-500">
+                                You can only vote for one candidate
+                            </div>
+                        </div>
+                        <div className="candidate-container flex  candidate-container  flex-col sm:flex-row justify-center gap-4">
+                            <CandidateCard
+                                name="Carla Caagahon"
+                                partylist="Sandigan"
+                            />
+                            <CandidateCard
+                                name="Kitschy Dulom"
+                                partylist="Sanaol"
+                            />
+                        </div>
+                    </div>
+
+                    <div className=" bg-white mt-4 p-4">
+                        <div className=" position-container text-center">
+                            <h4 className="font-bold">
+                                Auditor Student Council
+                            </h4>
+                            <div className="text-gray-500">
+                                You can only vote for one candidate
+                            </div>
+                        </div>
+                        <div className="candidate-container flex  candidate-container  flex-col sm:flex-row justify-center gap-4">
+                            <CandidateCard
+                                name="Ralph Sulleza"
+                                partylist="Sandigan"
+                            />
+                            <CandidateCard
+                                name="Jennylyn Morales"
+                                partylist="Sanaol"
+                            />
+                        </div>
+                    </div>
+                    <div className=" bg-white mt-4 p-4">
+                        <div className=" position-container text-center">
+                            <h4 className="font-bold">P.R.O Student Council</h4>
+                            <div className="text-gray-500">
+                                You can only vote for one candidate
+                            </div>
+                        </div>
+                        <div className="candidate-container flex  candidate-container  flex-col sm:flex-row justify-center gap-4">
+                            <CandidateCard
+                                name="RJ Latorre"
+                                partylist="Sandigan"
+                            />
+                            <CandidateCard
+                                name="Dean Rodriguez"
+                                partylist="Sanaol"
                             />
                         </div>
                     </div>
@@ -119,7 +185,10 @@ const VoterDashboard = ({ auth }) => {
                     </div>
                 </div>
             </div>
-            <CastedVotes showModal={showCastedVote} onClose={() => setShowCastedVote(false)}/>
+            <CastedVotes
+                showModal={showCastedVote}
+                onClose={() => setShowCastedVote(false)}
+            />
             <Footer />
         </>
     );
