@@ -34,6 +34,7 @@ export default function AddUserModal() {
         post(route("register"), {
             onSuccess: () => {
                 setShowModal(false);
+                window.location.reload();
             },
         });
     };

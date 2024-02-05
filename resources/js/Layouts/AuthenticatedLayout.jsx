@@ -23,7 +23,7 @@ export default function Authenticated({ auth, header, children }) {
                                     <img
                                         src={SHSLogo}
                                         alt="Logo"
-                                        className="w-32"
+                                        className="w-[120px]"
                                     />
                                 </Link>
                             </div>
